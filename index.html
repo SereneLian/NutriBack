@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script>
+
+function post() {
+    var userid=document.getElementById("userid").value;
+    var group=document.getElementById("group").value;
+    var country=document.getElementById("country").value;
+    var age =document.getElementById("age").value;
+    var gender =document.getElementById("gender").value;
+    var education =document.getElementById("education").value;
+    var incomes =document.getElementById("incomes").value;
+    var data1={
+        userid: userid,
+        group:group,
+        country:country,
+        age:age,
+        gender: gender,
+        education: education,
+        incomes: incomes
+    };
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:5000",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data1),
+        dataType: "json",
+        success: function (message) {
+            console.log(message);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("failed！");
+        }
+    });
+
+}
+    </script>
+</head>
+<body>
+UserID：<input type="text" name="userid" id="userid">
+Group：<input type="text" name="group" id="group">
+Country:<input type="text" name="country" id="country">
+Age：<input type="text" name="age" id="age">
+Gender:<input type="text" name="gender" id="gender">
+Education:<input type="text" name="education" id="education">
+Incomes:<input type="text" name="incomes" id="incomes">
+<button type="button" onclick="post()">提交</button>
+
+</body>
+</html>
